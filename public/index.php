@@ -8,7 +8,7 @@ use Fraction\Http\Request;
 $request = Request::createFromGlobals();
 
 $kernel = Kernel::getKernel();
-$kernel->bootstrap(__DIR__ . '/..');
+$kernel->setProjectRoot(__DIR__ . '/..');
 
 $response = $kernel->handle($request);
 $response->send();
