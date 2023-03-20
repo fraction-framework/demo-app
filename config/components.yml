@@ -1,0 +1,2 @@
+components:
+  Fraction\Component\Routing\Provider\RoutingProvider: Fraction\Component\Routing\Provider\AttributeRoutingProvider

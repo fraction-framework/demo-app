@@ -1,0 +1,12 @@
+view:
+  response:
+    format: json
+
+api:
+  docs:
+    enabled: true
+    version: '1.0'
+    title: Fraction Framework API
+    servers:
+      - url: http://localhost:8000
+        description: Local server
