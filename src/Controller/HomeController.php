@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Attribute\AccessTokenRequired;
 use App\Resources\Errors\ProfileError;
 use App\Resources\Profile;
 use Doctrine\ORM\EntityManager;
@@ -53,6 +54,7 @@ class HomeController extends Controller {
   #[Parameter(name: 'country', required: true, pattern: 'Ukraine', description: 'User country')]
   #[View(resource: Profile::class, response: ResponseType::JSON)]
   #[Error(responseStatus: ResponseStatus::BadRequest, reference: ProfileError::class)]
+  #[AccessTokenRequired]
   public function profile(): array {
     return $this->request->all();
   }

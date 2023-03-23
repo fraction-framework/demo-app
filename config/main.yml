@@ -7,6 +7,10 @@ api:
     enabled: true
     version: '1.0'
     title: Fraction Framework API
+    list:
+      - production
+      - development
+    list2: [ production, development ]
     servers:
       - url: http://localhost:8000
         description: Local server
