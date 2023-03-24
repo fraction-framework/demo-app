@@ -1,4 +1,6 @@
 .DS_Store
 .idea
+.env.local
 /vendor
+/var/cache
 composer.lock

@@ -13,7 +13,7 @@ use Fraction\Throwable\UnauthorizedException;
 class AccessTokenSubscriber implements EventSubscriberInterface {
 
   /**
-   * @throws UnauthorizedException
+   * @throws UnauthorizedException|\ReflectionException
    */
   #[EventListener(EventType::Controller)]
   public function onController(ControllerEvent $event, Request $request): void {

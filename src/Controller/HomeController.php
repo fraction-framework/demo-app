@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Attribute\AccessTokenRequired;
+use App\EventDispatcher\Enum\CustomEventType;
 use App\Resources\Errors\ProfileError;
 use App\Resources\Profile;
 use Doctrine\ORM\EntityManager;
 use Fraction\Component\Controller;
+use Fraction\Component\Event\EventDispatcher;
 use Fraction\Http\Attribute\Error;
 use Fraction\Http\Attribute\Parameter;
 use Fraction\Http\Attribute\Route;
@@ -48,7 +50,7 @@ class HomeController extends Controller {
     return 'Hello World';
   }
 
-  #[Route(RequestMethod::GET, '/profile', description: 'User profile')]
+  #[Route(RequestMethod::GET, '/profile', description: 'Get user profile')]
   #[Parameter(name: 'name', type: ParameterType::STRING, required: true, description: 'User name')]
   #[Parameter(name: 'age', type: ParameterType::INT, required: false, default: 10, description: 'User age')]
   #[Parameter(name: 'country', required: true, pattern: 'Ukraine', description: 'User country')]
@@ -56,6 +58,18 @@ class HomeController extends Controller {
   #[Error(responseStatus: ResponseStatus::BadRequest, reference: ProfileError::class)]
   #[AccessTokenRequired]
   public function profile(): array {
+    return $this->request->all();
+  }
+
+  #[Route(RequestMethod::POST, '/profile', description: 'Update user profile')]
+  #[View(resource: Profile::class, response: ResponseType::JSON)]
+  public function profilePost(EventDispatcher $eventDispatcher): array {
+    // dispatch custom event
+    $eventDispatcher->dispatch('custom.send_email', ['data' => 'Custom event from string']);
+
+    // another way to dispatch event
+    $eventDispatcher->dispatch(CustomEventType::SEND_EMAIL, ['data' => 'Custom event from enum']);
+
     return $this->request->all();
   }
 }
