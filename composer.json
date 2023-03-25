@@ -1,5 +1,5 @@
 {
-  "name": "andrii-kryvoviaz/fraction-test-app",
+  "name": "fraction-framework/demo-app",
   "description": "Just a test app",
   "license": "MIT",
   "authors": [
@@ -18,7 +18,7 @@
     }
   ],
   "require": {
-    "fraction/fraction": "*",
+    "fraction-framework/fraction": "^1.0.0-beta",
     "doctrine/orm": "^2.14",
     "symfony/cache": "^6.2",
     "twig/twig": "^3.0"
